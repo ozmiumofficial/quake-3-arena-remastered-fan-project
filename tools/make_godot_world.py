@@ -65,7 +65,7 @@ def atlas(stems, suffix, name, size=256):
 
 
 # Names of textures with a painted feature (craters, arrows, symbols, panels ...), which
-# stochastic tiling would slice at its hex cells (Tony's q3dm1 crater report, 2026-10-22).
+# stochastic tiling would slice at its hex cells (Ozmium's q3dm1 crater report, 2026-10-22).
 FEATURE_NAMES = re.compile(r"(broke|_ow|arrow|symbol|letter|sign|door|tower|eye|light|logo|skull|face|demon|button|jump|"
                            r"pad|launch|screen|comp|fin$|_e$|banner|steed|ball|bullseye|target|glow|tech|pipe|vent|"
                            r"grate|panel|center|arch)")

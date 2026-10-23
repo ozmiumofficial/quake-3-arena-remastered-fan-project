@@ -13,7 +13,7 @@ const PATH := "user://campaign.json"
 const TIER_SIZE := 4
 ## q3_ui's single-player awards (ui_sppostgame.c), in its order
 const AWARDS := ["accuracy", "impressive", "excellent", "gauntlet", "frags", "perfect"]
-## Career XP for campaign progress (Tony, 2026-10-22), on top of the match's own XP: the first win
+## Career XP for campaign progress (Ozmium, 2026-10-22), on top of the match's own XP: the first win
 ## of an arena (times skill / 3), a win at a higher skill than before, a finished tier of four,
 ## and the whole campaign the first time the Final is won.
 const XP := {"arena": 250, "skill_up": 100, "tier": 1000, "campaign": 5000}

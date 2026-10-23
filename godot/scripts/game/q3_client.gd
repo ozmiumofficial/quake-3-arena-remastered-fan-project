@@ -62,7 +62,7 @@ const MAX_PREDICTED_EVENTS := 16
 var _predictable: PackedInt32Array = PackedInt32Array()   ## cg.predictableEvents: what each slot played
 var _local_lightning := false      ## cent->pe.lightningFiring for the local player
 ## Quake 3 sinks bodies into the floor after 5 s (g_client.c BODY_SINK_TIME); the remaster keeps
-## them longer (Tony, 2026-10-22), then burns them away (Q3Character.disintegrate).
+## them longer (Ozmium, 2026-10-22), then burns them away (Q3Character.disintegrate).
 const CORPSE_TIME := 10.0
 const CORPSE_BURN := 1.6
 

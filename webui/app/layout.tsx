@@ -10,7 +10,7 @@ const body = Barlow({ subsets: ["latin"], weight: ["400", "500", "600"], variabl
 
 export const metadata: Metadata = { title: "Q3Remaster" };
 
-// Nothing outside the bundled menu may load or run (Tony, 2026-10-22: no code injection through
+// Nothing outside the bundled menu may load or run (Ozmium, 2026-10-22: no code injection through
 // the web UI). Everything is served from the game's own files (http://res.webui), so 'self' covers
 // scripts, styles, fonts and images; nothing connects anywhere else (Godot does all networking)
 // and nothing can be framed, posted or re-based. Next's static export needs inline scripts to

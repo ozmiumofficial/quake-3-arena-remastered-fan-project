@@ -35,7 +35,7 @@ SRC, CAGE, OUT = (os.path.join(a.work, d) for d in ("src", "cage", "tex"))
 os.makedirs(OUT, exist_ok=True)
 rng = np.random.default_rng(a.seed)
 
-# per class: roughness, metal. Kept matte on purpose (Tony 2026-10-22: low gloss, no shine);
+# per class: roughness, metal. Kept matte on purpose (Ozmium 2026-10-22: low gloss, no shine);
 # painted armor reads as satin paint over metal, not polished metal.
 CLASSES = ["bronze", "steel", "heat", "fiber", "skin"]
 PARAMS = {

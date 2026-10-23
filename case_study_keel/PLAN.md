@@ -63,7 +63,7 @@ Two realistic routes:
 ## Licensing: the real constraint
 id's art can't be redistributed. Fan remasters handle this with **"bring your own pak0"**: ship only the tools, and have them convert the player's own legally owned `pak0.pk3` on their machine at install time. Every script here already works that way: it reads the original files and writes new ones, with nothing of id's baked in. Anything original (new sculpts, new textures painted from scratch) is yours to ship.
 
-## Open decisions for Tony
+## Open decisions for Ozmium
 1. Which engine route (ioq3 texture-pack mod vs. separate Unity remaster)?
 2. Hand-finish one hero character first (Phase 3), or batch everything automatically first (Phase 1)?
 3. Is a public release a goal? If so, the tools-only "bring your own pak0" approach decides how everything gets packaged from here on.

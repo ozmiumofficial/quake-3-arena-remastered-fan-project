@@ -1,12 +1,12 @@
-# Gameplay scene: plan (approved by Tony, 2026-10-22)
+# Gameplay scene: plan (approved by Ozmium, 2026-10-22)
 
 **Approved 2026-10-22 with the recommended answers:** id's GPL code in a C++ GDExtension, hybrid UI (native HUD, web pause menu), original bots via botlib and `.aas`, baked LightmapGI. Work starts with G0.
 
-**Goal (Tony):** "the gameplay scene and flow from the main menu. this will include modernised in game user interface. also we need a crosshair editor. we need the full quake 3 arena experience."
+**Goal (Ozmium):** "the gameplay scene and flow from the main menu. this will include modernised in game user interface. also we need a crosshair editor. we need the full quake 3 arena experience."
 
 **Done means:** from the main menu (Create Match, Offline vs Bots, Training, Single Player) a match loads a real Quake 3 map and plays with Quake 3's own movement, weapons, items, rules and bots. It has a modern HUD, a crosshair editor, a pause menu, a scoreboard, end-of-match results (campaign wins recorded, tier movies played) and a clean return to the menu. Self-test and captures verify it; README, CLAUDE.md, PLAN.md and the zip are updated.
 
-Nothing below is built yet. Four decisions need Tony's answer first (section "Decisions"); the phases assume the recommended answers.
+Nothing below is built yet. Four decisions need Ozmium's answer first (section "Decisions"); the phases assume the recommended answers.
 
 ## What we have to work with
 
@@ -42,7 +42,7 @@ Nothing below is built yet. Four decisions need Tony's answer first (section "De
 
 ## Phases
 
-Efforts in hours of Claude working time (rescaled 2026-10-22: Tony found the first, human-developer estimates far too high; the asset pipeline and main menu took about a day). Each phase ends with self-test checks and captures.
+Efforts in hours of Claude working time (rescaled 2026-10-22: Ozmium found the first, human-developer estimates far too high; the asset pipeline and main menu took about a day). Each phase ends with self-test checks and captures.
 
 | # | Phase | What it delivers | Hours |
 |---|---|---|---|
@@ -59,7 +59,7 @@ Efforts in hours of Claude working time (rescaled 2026-10-22: Tony found the fir
 
 Order: G0 -> G1 and G2 (independent, can overlap) -> G3 -> G4 -> G5/G6/G7 -> G8. The first playable point is after G3 (q3dm17 with bots, no HUD beyond a crosshair), at about 21 h.
 
-**Later, not in this effort unless Tony wants it now:** multiplayer (listen and dedicated servers over ioquake3's snapshot netcode, with Godot transport), about 8-10 h; Steamworks (GodotSteam, lobbies, server browser, the helper-process question above), about 5 h; HUD layout editor (drag elements), about 1.5 h; demos and spectator cams; the map editor. The design above is server-authoritative from the start (even offline, a local `Q3Server` runs the match), so multiplayer adds transport and prediction, not a rewrite.
+**Later, not in this effort unless Ozmium wants it now:** multiplayer (listen and dedicated servers over ioquake3's snapshot netcode, with Godot transport), about 8-10 h; Steamworks (GodotSteam, lobbies, server browser, the helper-process question above), about 5 h; HUD layout editor (drag elements), about 1.5 h; demos and spectator cams; the map editor. The design above is server-authoritative from the start (even offline, a local `Q3Server` runs the match), so multiplayer adds transport and prediction, not a rewrite.
 
 ## Progress
 
@@ -86,7 +86,7 @@ Order: G0 -> G1 and G2 (independent, can overlap) -> G3 -> G4 -> G5/G6/G7 -> G8.
   - The 13 are reverted to id's code in `tools/q3core/patches/0001-id-1.32-gameplay.patch`, which `build_q3core.py` reapplies after every fetch.
   - They cover the water-jump test, splash line of sight, the hit beep on shootable doors, nodrop deaths, the drowning sounds, two CTF bonuses, the frag limit with one player, toggleable trigger_hurt, and four bot behaviors: strafe speed, button weapons, the q3tourney6 crusher and CTF orders.
   - Weapon damage, spread, fire rates, item amounts, respawn times and Pmove's rounding were already identical.
-  - Six judgment calls (A1-A6 in the audit), decided by Tony on 2026-10-22: A2 (CTF carrier-protect bonus) and A5 (suicidal bots never retreat again) use id's 1.32 code. A1, A3, A4 and A6 keep ioquake3's fixes: duel intermission restart, TDM warmup per team, force-balance exemption, and bots not shooting through client 0.
+  - Six judgment calls (A1-A6 in the audit), decided by Ozmium on 2026-10-22: A2 (CTF carrier-protect bonus) and A5 (suicidal bots never retreat again) use id's 1.32 code. A1, A3, A4 and A6 keep ioquake3's fixes: duel intermission restart, TDM warmup per team, force-balance exemption, and bots not shooting through client 0.
   - Retested after the reverts: q3dm17, q3tourney6, q3ctf1 and q3dm0 all play.
 - **Note for G4:** ioquake3 takes a player's starting team from userinfo `teampref`, not `team`. The menu's setup has to send `teampref`.
 - **Note for G4 (online presence, from the friends/parties session):** call `Online.set_presence("match", detail, join)` when the map, mode or score changes, for example "Duel on q3tourney2, 7-4". Leave `join` as "" until there's something to join, and don't call it every frame.
@@ -120,7 +120,7 @@ Order: G0 -> G1 and G2 (independent, can overlap) -> G3 -> G4 -> G5/G6/G7 -> G8.
 - **Scoreboard:** restyled. Right click with Tab held for player cards and stats.
 - **Ranked:** opens at level 30.
 
-## Added by Tony (2026-10-22)
+## Added by Ozmium (2026-10-22)
 
 - **Lighting:** keep the baked LightmapGI for play. The map editor will preview with real-time lights and bake on save.
 - **Ready-up:** players ready up during warmup before the countdown (G4).
@@ -128,7 +128,7 @@ Order: G0 -> G1 and G2 (independent, can overlap) -> G3 -> G4 -> G5/G6/G7 -> G8.
 - **Tab scoreboard:** shows each player's card (banner, emblem, frame, title, from `Q3Cards`) in an intuitive layout (G5).
 - **Priority:** working gameplay now; the map editor starts tomorrow (2026-10-23).
 
-## Decisions for Tony
+## Decisions for Ozmium
 
 1. **Game code:** run id's GPL code in a C++ GDExtension (recommended), or re-write it in GDScript?
 2. **In-game UI tech:**
@@ -141,4 +141,4 @@ Order: G0 -> G1 and G2 (independent, can overlap) -> G3 -> G4 -> G5/G6/G7 -> G8.
    - Real-time SDFGI: no bake, but leaks light in tight indoor maps and costs frame rate.
    - Keep the original lightmaps as a "classic" option alongside either, about 0.5 h more.
 
-Defaults assumed unless Tony says otherwise: offline play vs bots first, multiplayer after (the zero-cost stack in PLAN.md); 125 Hz fixed Pmove; q3dm17 as the vertical slice, then all 35 maps in the batch.
+Defaults assumed unless Ozmium says otherwise: offline play vs bots first, multiplayer after (the zero-cost stack in PLAN.md); 125 Hz fixed Pmove; q3dm17 as the vertical slice, then all 35 maps in the batch.

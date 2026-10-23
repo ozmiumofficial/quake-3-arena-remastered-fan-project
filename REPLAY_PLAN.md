@@ -1,6 +1,6 @@
-# Replays, replay viewer and spectator mode: plan (approved by Tony, 2026-10-23, with every recommended choice below; built after the map editor)
+# Replays, replay viewer and spectator mode: plan (approved by Ozmium, 2026-10-23, with every recommended choice below; built after the map editor)
 
-Tony asked for replays, a replay viewer and spectator mode (2026-10-23). PLAN.md already lists them under "Multiplayer" (free and follow cams, server-side and client demos, killcam); this plan makes them a phase of their own, because most of it doesn't need netcode.
+Ozmium asked for replays, a replay viewer and spectator mode (2026-10-23). PLAN.md already lists them under "Multiplayer" (free and follow cams, server-side and client demos, killcam); this plan makes them a phase of their own, because most of it doesn't need netcode.
 
 ## What we have to work with
 

@@ -10,7 +10,7 @@ signal notice(text: String, tone: String)
 signal party_chat(msg: Dictionary)
 signal leaderboard(board: Dictionary)           ## a board the menu asked for, cards checked against the catalog
 
-## The deployed Worker (online/, Tony's personal Cloudflare account). Settings
+## The deployed Worker (online/, Ozmium's personal Cloudflare account). Settings
 ## network/online_server overrides it; a local `npm run dev` in online/ is ws://127.0.0.1:8787.
 const DEFAULT_SERVER := "wss://arena-online.fragnet.workers.dev"
 const KEY_PATH := "user://online/identity.key"

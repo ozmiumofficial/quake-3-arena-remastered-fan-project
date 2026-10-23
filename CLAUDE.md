@@ -1,6 +1,6 @@
 # Q3Remaster: context for Claude
 
-Tony is planning a complete modern remaster of Quake III Arena in Unity or Godot (engine not chosen). **Current stage: Map editor (approved 2026-10-23).** The asset pipeline, main menu and Gameplay scene (`GAMEPLAY_PLAN.md`) are built. The Map editor scene is being built in phases E0-E8 per `MAP_EDITOR_PLAN.md` (E0 kernel done). **Next after it:** replays, the replay viewer, spectator mode and killcam, phases R1-R9 per `REPLAY_PLAN.md` (approved 2026-10-23). **Last:** online multiplayer, phases M1-M8 per `MULTIPLAYER_PLAN.md` (Tony put it last, 2026-10-23). Read `PLAN.md` for phases and open decisions, and `DEVELOPMENT.md` for how the tools run. `README.md` is the player-facing feature page (the GitHub front page, with screenshots): keep it non-technical and only claim what's built.
+Ozmium is planning a complete modern remaster of Quake III Arena in Unity or Godot (engine not chosen). **Current stage: Map editor (approved 2026-10-23).** The asset pipeline, main menu and Gameplay scene (`GAMEPLAY_PLAN.md`) are built. The Map editor scene is being built in phases E0-E8 per `MAP_EDITOR_PLAN.md` (E0 kernel done). **Next after it:** replays, the replay viewer, spectator mode and killcam, phases R1-R9 per `REPLAY_PLAN.md` (approved 2026-10-23). **Last:** online multiplayer, phases M1-M8 per `MULTIPLAYER_PLAN.md` (Ozmium put it last, 2026-10-23). Read `PLAN.md` for phases and open decisions, and `DEVELOPMENT.md` for how the tools run. `README.md` is the player-facing feature page (the GitHub front page, with screenshots): keep it non-technical and only claim what's built.
 
 **Direction (2026-10-22):**
 - Fully open source.
@@ -20,7 +20,7 @@ Tony is planning a complete modern remaster of Quake III Arena in Unity or Godot
   - Map editor as a menu item that loads the Map editor scene.
 - Full multiplayer with **no Steamworks and no paid hosting** (decided 2026-10-22): player-hosted matches over peer-to-peer WebRTC, always relayed through Cloudflare's TURN so no one sees another player's IP, closest region first with a region choice (2026-10-23), optional dedicated servers, one match browser, and accounts, matchmaking and player data on Cloudflare's free tier. See PLAN.md "Multiplayer and online services". Friends and parties are built (`online/`, `scripts/online/`).
 - Customizable player cards, XP and levels that unlock card parts, achievement-only unlocks, and ranked Elo matchmaking.
-  - Built the way Tony's own game trac3r does it (`C:\gAME\TRAC3R\web`: `cosmetics.ts`, `achievements.ts`, `PlayerCard.tsx`, `bannerArt.ts`); its code is free to reuse.
+  - Built the way Ozmium's own game trac3r does it (`C:\gAME\TRAC3R\web`: `cosmetics.ts`, `achievements.ts`, `PlayerCard.tsx`, `bannerArt.ts`); its code is free to reuse.
   - The catalog is large and mostly Quake 3 themed.
   - All progression is cosmetic.
   - See PLAN.md "Player cards, progression and ranked".
@@ -33,8 +33,8 @@ Tony is planning a complete modern remaster of Quake III Arena in Unity or Godot
 
 ## Rules
 
-- id Software's assets (models, textures, maps, sounds) are copyrighted. Tony's chosen distribution model and its risks are in PLAN.md "Licensing". The finished asset library is public in the repo (Tony's decision, 2026-10-23); id's original files and the tools' working files stay private.
-- **The source code is public** (Tony's decision, 2026-10-23): https://github.com/ozmiumofficial/quake-3-arena-remastered-fan-project (`origin`, branch `main`). Anything committed is published.
+- id Software's assets (models, textures, maps, sounds) are copyrighted. Ozmium's chosen distribution model and its risks are in PLAN.md "Licensing". The finished asset library is public in the repo (Ozmium's decision, 2026-10-23); id's original files and the tools' working files stay private.
+- **The source code is public** (Ozmium's decision, 2026-10-23): https://github.com/ozmiumofficial/quake-3-arena-remastered-fan-project (`origin`, branch `main`). Anything committed is published.
   - The repo carries the remastered asset library, `godot/library/` and `godot/webui/`, with its binaries in Git LFS (`.gitattributes`). GitHub's free LFS quota is 10 GiB of storage and 10 GiB of downloads a month, about four full clones; every regenerated texture adds storage.
   - The root `.gitignore` keeps out id's original files (`extracted/`), the tools' working files (`work/`) and the case study's models. It also keeps out builds and refetched code.
   - Check `git add --dry-run` for binaries or media outside the library before committing, and give a new binary type in the library an LFS rule in `.gitattributes`; a pattern with a slash in the middle is anchored to the repo root, so use `**/` for nested paths.
@@ -44,7 +44,7 @@ Tony is planning a complete modern remaster of Quake III Arena in Unity or Godot
 - Give effort estimates in hours, not days.
 - Working files (.blend sources, scratch exports) stay out of any engine project's Assets folder; only final deliverables go in.
 - Verify before claiming results: run the tool, open the viewer, read the reports.
-- Materials stay matte: Tony found the first PBR pass far too glossy. The roughness floor is 0.45 and painted armor sits around 0.7 with partial metal. Don't add shine unless he asks.
+- Materials stay matte: Ozmium found the first PBR pass far too glossy. The roughness floor is 0.45 and painted armor sits around 0.7 with partial metal. Don't add shine unless he asks.
 
 ## Running things
 
@@ -63,7 +63,7 @@ Results go in `work/<model>/`: `export/` (blend/fbx/glb, textures, unity/), `vie
 
 ## Godot facts (hard-won)
 
-- **Work in the live editor (Tony's rule):** keep the Godot editor open on `godot/` whenever Godot work is being done, so Tony can watch the changes happen.
+- **Work in the live editor (Ozmium's rule):** keep the Godot editor open on `godot/` whenever Godot work is being done, so Ozmium can watch the changes happen.
   - If `editor_status` can't connect, launch the editor: `godot.windows.opt.tools.64.exe --editor --path godot`.
   - The `godot_mcp_bridge` addon is already enabled in project.godot and listens on 127.0.0.1:9080.
   - Make scene changes through `editor_open_scene` and `editor_run_gdscript`, then `EditorInterface.save_scene()`.
@@ -170,7 +170,7 @@ Results go in `work/<model>/`: `export/` (blend/fbx/glb, textures, unity/), `vie
   - Bridge: page -> Godot `social {op, ...}`; Godot -> page `social {status, reason, state, chat}`, `social_notice`, `party_chat`.
   - The hub sends the whole picture (`social`) on every change; there are no deltas.
 - **Running:**
-  - **Live** since 2026-10-22: `wss://arena-online.fragnet.workers.dev` (Tony's personal Cloudflare account; `npm run deploy` in `online/`). That is `Online.DEFAULT_SERVER`.
+  - **Live** since 2026-10-22: `wss://arena-online.fragnet.workers.dev` (Ozmium's personal Cloudflare account; `npm run deploy` in `online/`). That is `Online.DEFAULT_SERVER`.
   - Local hub: `cd online && npm run dev` on `ws://127.0.0.1:8787`.
   - Admin: `/admin/players` and `/admin/purge` with the `ADMIN_TOKEN` secret (token in `work/online_admin_token.txt`; online/README.md "Admin"). On 2026-10-23 every test player was purged from the live hub; only this PC's identity remained.
   - Tests: `npm run smoke [wss://...]` (24 checks; `HUB_ADMIN_TOKEN=... ` makes it remove its players) and `res://tests/online_test.tscn` (20 checks, local by default, `-- server=` for another).
@@ -178,7 +178,7 @@ Results go in `work/<model>/`: `export/` (blend/fbx/glb, textures, unity/), `vie
 ode_modules`.
   - `node test/friend_bot.mjs` fills the Friends panel for a look.
   - The menu capture option `page=friends` opens the panel.
-- **Leaderboards (2026-10-23):** `career` and `leaderboard` messages (online/README.md "Leaderboards"); `Online` sends the career on connect and after `Q3Profile.save()`; the menu page is `webui/components/pages/LeaderboardPage.tsx` (Play, Leaderboards; also from Ranked). The level board is self-reported; the ranked board only fills from peer-to-peer ranked matches whose players' signed scoreboards agree (Tony, 2026-10-23; verified dedicated servers later).
+- **Leaderboards (2026-10-23):** `career` and `leaderboard` messages (online/README.md "Leaderboards"); `Online` sends the career on connect and after `Q3Profile.save()`; the menu page is `webui/components/pages/LeaderboardPage.tsx` (Play, Leaderboards; also from Ranked). The level board is self-reported; the ranked board only fills from peer-to-peer ranked matches whose players' signed scoreboards agree (Ozmium, 2026-10-23; verified dedicated servers later).
 - **Identity:**
   - `user://online/identity.key` is the player. Deleting it makes a new player.
   - Node can sign as it (`friend_bot.mjs` does), which is handy for tests.
@@ -209,7 +209,7 @@ ode_modules`.
   - It sets `fs_basepath` to the addon's `bin/`, `fs_homepath` to `user://q3`, `net_enabled 0`, `sv_fps 125`, `pmove_fixed 1` and `pmove_msec 8`.
   - It hands the engine the baseq3 folder the setup screen verified (`Q3Ownership.remembered()`) as `fs_steampath`. Without one, ioquake3 finds the Steam install itself. Either way the engine checks pak0 too.
   - It runs once per process.
-- **Ownership gate (2026-10-23, Tony's design):** the splash shows `scenes/splash/setup_gate.gd` until a retail pak0.pk3 is verified, and the game can't go on without one.
+- **Ownership gate (2026-10-23, Ozmium's design):** the splash shows `scenes/splash/setup_gate.gd` until a retail pak0.pk3 is verified, and the game can't go on without one.
   - The player drags pak0.pk3, another pak, baseq3 or the game folder onto the window (`Window.files_dropped`), or uses Browse.
   - `Q3Ownership` computes files.c's pak checksum (MD4 over the central directory's CRCs, digest words xored; Godot has no MD4, so it's in GDScript) against `pak_checksums`. The demo pak0 is refused.
   - It remembers the folder in `user://q3/ownership.cfg` (nothing is copied) and re-checks it every launch.
@@ -266,7 +266,7 @@ ode_modules`.
   - **For a picture of both (README shots, 2026-10-23):** render the 3D with `capture.tscn ... window=1920x1080 page=<id>`, and the page in headless Chrome over CDP at 1920x1080 with `Emulation.setDefaultBackgroundColorOverride` alpha 0; then alpha-composite. The web view really is a transparent layer over the 3D, so this is what players see.
   - In the browser the mock draws placeholders (`DevBackdrop`, the "3D logo (Godot)" box); hide both before the shot.
   - The menu's left shade (88% black) sits over the Godot logo, so the logo is dim in the real menu too.
-  - `-- window=WxH` (Settings `_forced_window`) overrides the saved display mode for one run. Tony's saved mode is fullscreen 3440x1440.
+  - `-- window=WxH` (Settings `_forced_window`) overrides the saved display mode for one run. Ozmium's saved mode is fullscreen 3440x1440.
 
 ## Map facts (hard-won)
 
@@ -334,7 +334,7 @@ ode_modules`.
 
 ## Results so far
 
-- **Keel:** 21 bones, legs 5.4 mm and torso 6.5 mm RMS. The original session is in `case_study_keel/`. Online viewer (Tony's account): https://claude.ai/artifact/8idHYcHtmEor4qy1ZbvWbT
+- **Keel:** 21 bones, legs 5.4 mm and torso 6.5 mm RMS. The original session is in `case_study_keel/`. Online viewer (Ozmium's account): https://claude.ai/artifact/8idHYcHtmEor4qy1ZbvWbT
 - **All models:** all 29 player models convert with no manual fixes: 21–30 bones each, about 2–13 mm average error. `work/summary.json` has the numbers, and `work/index.html` is a gallery of every viewer.
 - **Props, effects and catalog:** 87 props, 30 effect textures, 17 effects, 35 items and 48 map entity classes, all loading in `godot/`. The self-test passes 15/15, and the showcase was verified by screenshots.
 - **World materials (done):**
@@ -354,7 +354,7 @@ ode_modules`.
     - Godot owns the rules: `Q3Profile.menu_payload()` says what's earned, `set_card()` / `set_showcase()` refuse the rest. Bridge: `card_set`, `card_showcase`, `card_seen`, `taunt`; Godot answers `profile`. The catalog goes in init as `cards`.
     - Medals are stored as `medal.<award>` (what achievements read); `Q3Profile._migrate()` moves old flat `excellents`-style keys. Matches also record `matches_model`, `matches_skin`, `wins_mode`, `duel_wins` and `playtime`.
     - The browser preview's `?demo` swaps in a level-34 profile (`dump_menu_state.gd` DEMO); the dump never reads this PC's `user://profile.json`.
-  - Ranked tiers are Bronze to Godlike (Tony, 2026-10-23). `Q3Cards.rank(rating)` gives tier and division; `Q3Profile.ranked()` reads the `ranked_rating`, `ranked_matches`, `ranked_wins` and `ranked_peak` stats (only the ranked backend may set them; for now from peer-to-peer matches whose players agree on the result, PLAN.md "Trust"). The Ranked page explains the system.
+  - Ranked tiers are Bronze to Godlike (Ozmium, 2026-10-23). `Q3Cards.rank(rating)` gives tier and division; `Q3Profile.ranked()` reads the `ranked_rating`, `ranked_matches`, `ranked_wins` and `ranked_peak` stats (only the ranked backend may set them; for now from peer-to-peer matches whose players agree on the result, PLAN.md "Trust"). The Ranked page explains the system.
   - `build_cards.py --no-render` currently picks 3 different representative skies from the shipped catalog, so the ranked rename was spliced into `library/cards/cards.json` instead of taken from a rebuild. Look at the sky choice before the next full rebuild.
   - Still to do: `Q3Progress` (per-weapon frags, pickups, movement records from match events), the duel versus screen, the share image, and ranked (PLAN.md).
 - **Next tool phases** (PLAN.md): the BSP/.map importer, then the map editor.

@@ -143,7 +143,7 @@ The menu's web layer is invisible to Godot's own screenshots, so `capture.tscn` 
 
 Use the scene form, not `--script`: a `--script` main loop compiles before autoloads exist, so the `Q3` autoload isn't found and Godot idles.
 
-**Claude control:** `tools/godot-mcp` is Tony's MCP server for Godot: 19 tools to run projects, edit scenes, and drive the open editor through the bridge add-on, which the project already includes. Register it once:
+**Claude control:** `tools/godot-mcp` is Ozmium's MCP server for Godot: 19 tools to run projects, edit scenes, and drive the open editor through the bridge add-on, which the project already includes. Register it once:
 
 ```
 claude mcp add -s user -e GODOT_PATH="<path to Godot exe>" godot -- node <path>/Q3Remaster/tools/godot-mcp/dist/index.js

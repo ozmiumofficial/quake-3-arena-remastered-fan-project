@@ -44,7 +44,7 @@ func _init() -> void:
 	Online.leaderboard.connect(func(b): post.emit({"type": "leaderboard", "board": b}))
 
 
-## The page is treated as untrusted input (Tony, 2026-10-22: nobody injects code through the web
+## The page is treated as untrusted input (Ozmium, 2026-10-22: nobody injects code through the web
 ## UI). Godot only ever acts on the fixed message types below, with checked fields; anything else,
 ## anything oversized and anything that isn't a JSON object is dropped. main_menu.gd also only
 ## listens while the web view shows our own bundled page.

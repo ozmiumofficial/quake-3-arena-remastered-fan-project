@@ -74,7 +74,7 @@ godot --headless --path ../godot res://tests/online_test.tscn
 
 ## Deployed
 
-The hub went live on 2026-10-22 at `wss://arena-online.fragnet.workers.dev`. It runs on Tony's personal
+The hub went live on 2026-10-22 at `wss://arena-online.fragnet.workers.dev`. It runs on Ozmium's personal
 Cloudflare account (`account_id` in `wrangler.jsonc`), which keeps it off the business account and keeps its free-tier
 allowance separate from TRAC3R's. The game's `Online.DEFAULT_SERVER` points there. Players can point the Online server
 setting (Settings, Network) at any other hub.
@@ -89,7 +89,7 @@ The Godot online test's two players (`^4Tester A`, `Tester B`) stay too.
 ## Admin
 
 `/admin/*` is the operator's, refused (403) unless the request carries `authorization: Bearer <ADMIN_TOKEN>`. The token
-is a Worker secret (`npx wrangler secret put ADMIN_TOKEN`); locally it goes in `online/.dev.vars` (git-ignored). Tony's
+is a Worker secret (`npx wrangler secret put ADMIN_TOKEN`); locally it goes in `online/.dev.vars` (git-ignored). Ozmium's
 copy is in `work/online_admin_token.txt`, outside the repo.
 
 - `GET /admin/players`: every player with id, code, name, look, created, last seen, XP and friend count.

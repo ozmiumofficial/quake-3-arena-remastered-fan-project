@@ -1,6 +1,6 @@
 # Online multiplayer: plan (2026-10-23)
 
-**Order (Tony, 2026-10-23):** last, after the map editor (`MAP_EDITOR_PLAN.md`) and replays (`REPLAY_PLAN.md`). Lag compensation (decision 2 below) is still open.
+**Order (Ozmium, 2026-10-23):** last, after the map editor (`MAP_EDITOR_PLAN.md`) and replays (`REPLAY_PLAN.md`). Lag compensation (decision 2 below) is still open.
 
 Real online matches, built on the decisions in PLAN.md "Multiplayer and online services" (all from 2026-10-22/23):
 - Players host matches on their own PCs, peer-to-peer over WebRTC.
@@ -57,13 +57,13 @@ A net overlay shows ping, loss, jitter and snapshot rate.
 
 **Dedicated servers.** The same executable run headless (`--server <config>`), with no local client. It has its own identity key, so its listing, name and bans persist. It gets rcon and an admin page in the menu, sleeps its game loop when empty, and can start with Windows. A Linux x86-64 build follows (q3core with `sys_unix.c`, a Linux export preset); Linux ARM64 for Oracle's free tier comes after. Public servers can also take plain UDP and register with dpmaster.
 
-## Decisions for Tony
+## Decisions for Ozmium
 
 1. **When:** decided: last, after the map editor and replays.
 2. **Lag compensation:** id 1.32 has none, so online players lead hitscan shots by their ping, as in the original. Options:
    - **Classic** (recommended to start): exactly id 1.32.
    - **An optional server setting** for hitscan rewind, added later as a server rule, off by default.
-3. **Cloudflare TURN key (Tony's step):** create a Realtime TURN key in the Cloudflare dashboard, then store it in the Worker with `npx wrangler secret put TURN_KEY_ID` and `TURN_KEY_TOKEN` in `online/`. The secret never goes in the repo or the chat.
+3. **Cloudflare TURN key (Ozmium's step):** create a Realtime TURN key in the Cloudflare dashboard, then store it in the Worker with `npx wrangler secret put TURN_KEY_ID` and `TURN_KEY_TOKEN` in `online/`. The secret never goes in the repo or the chat.
 
 ## Phases
 

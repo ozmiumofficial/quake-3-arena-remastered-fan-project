@@ -9,7 +9,7 @@
 | Decision | Status |
 |---|---|
 | Must be modern (PBR, skeletal animation, modern lighting) | Decided 2026-10-22 |
-| Engine: Unity or Godot | Recommended Godot (fully open source); Tony's call. Comparison below |
+| Engine: Unity or Godot | Recommended Godot (fully open source); Ozmium's call. Comparison below |
 | ioquake3 / Quake3e as the base | Rejected: its renderer tops out around mid-2000s quality |
 | Start with tools, not game code | Decided 2026-10-22 |
 | Distribution model | Decided: free/open source, Quake 3 ownership required, ships the remastered asset library. Risk and mitigations in "Licensing" |
@@ -101,7 +101,7 @@ id Software's art, maps and sounds are copyrighted. The game code is GPL, but th
 
 **Open-sourcing the remaster doesn't change this.** An open-source license covers the code you write. It can't grant rights to id's assets, or to remastered versions of them, because those are derived works. Giving them away for free still counts as distributing them. "Quake" is also a trademark. Open source works well with option 1: publish all the code, and players convert their own paks. ioquake3 works exactly this way.
 
-**Decided 2026-10-22 (Tony):**
+**Decided 2026-10-22 (Ozmium):**
 - Free and fully open source.
 - Players must own Quake III Arena to run it.
 - It ships the remastered asset library made with these tools: modified and modernized id assets with rigged skeletons. Nothing is converted on the player's machine.
@@ -125,7 +125,7 @@ Reusable whatever happens (structure and facts, not art): the bone layout, the c
 
 ## Modern enhancements (game scope, 2026-10-22)
 
-Tony wants every modern enhancement: a full remastered asset library, rigged skeletons, ragdoll physics, better UI, and the rest of a modern feature set. Core rule: **the original game feel is sacred.** Movement, weapon timing and damage come from the GPL code; everything below is layered on top, never changes it, and gets measured against the original.
+Ozmium wants every modern enhancement: a full remastered asset library, rigged skeletons, ragdoll physics, better UI, and the rest of a modern feature set. Core rule: **the original game feel is sacred.** Movement, weapon timing and damage come from the GPL code; everything below is layered on top, never changes it, and gets measured against the original.
 
 Several of these already exist in the GAME project on the work PC (noted as "GAME has"); the designs carry over even though the Unity code doesn't move to Godot.
 
@@ -142,11 +142,11 @@ Several of these already exist in the GAME project on the work PC (noted as "GAM
 | Bots | Modern AI on a navmesh, difficulty that scales by skill rather than cheating | GAME has bot AI with nav baked into maps |
 | Modding | Open source; mod and map loading from packs, map editor, workshop-style browser | GAME has an in-game collaborative map editor |
 | Platform | Gamepad support, accessibility (colorblind modes, subtitles for announcer and callouts, HUD scaling), Linux/Windows/macOS builds | Godot exports all three |
-| Anti-cheat | No anti-cheat (Tony, 2026-10-22). Lobbies vote-kick (`callvote kick`), and the kicked player is banned from that lobby for 30 minutes | Server authority stays: the game code runs on the host |
+| Anti-cheat | No anti-cheat (Ozmium, 2026-10-22). Lobbies vote-kick (`callvote kick`), and the kicked player is banned from that lobby for 30 minutes | Server authority stays: the game code runs on the host |
 
 ## Scene structure (2026-10-22)
 
-Tony's layout: three top-level scenes with a clear handoff.
+Ozmium's layout: three top-level scenes with a clear handoff.
 
 | Scene | Contains | Hands off |
 |---|---|---|
@@ -162,7 +162,7 @@ Rules:
 
 ## Main menu design (2026-10-22)
 
-Tony's vision: a modernized, visually stunning version of the Quake III Arena main menu. Modern quality-of-life features, a fully fleshed-out settings menu, menu buttons and items on the left, and a stylish, Skyrim-like character showcase on the right: a randomized player model with cool, slowly drifting camera angles.
+Ozmium's vision: a modernized, visually stunning version of the Quake III Arena main menu. Modern quality-of-life features, a fully fleshed-out settings menu, menu buttons and items on the left, and a stylish, Skyrim-like character showcase on the right: a randomized player model with cool, slowly drifting camera angles.
 
 ### Layout
 - **Left column:** the menu, in Quake 3's gothic-metal style made modern. Large, clean labels with a glowing red accent, a hover sweep and a subtle sound; sub-menus slide out to the right of the column.
@@ -171,7 +171,7 @@ Tony's vision: a modernized, visually stunning version of the Quake III Arena ma
 - **Bottom bar:** news, patch notes and version.
 
 ### Built (2026-10-22)
-- **UI technology (Tony's call):**
+- **UI technology (Ozmium's call):**
   - The menu is a Next.js + React + Tailwind + Motion app (`webui/`), running live in Godot through godot_wry (MIT; WebView2 on Windows, WebKit on macOS, WebKitGTK on Linux) as a transparent layer over the 3D showcase.
   - Godot keeps everything stateful: settings, match setups, campaign progress, sounds and the controller. A small JSON bridge connects the two.
   - **Trade-offs:** the web view always draws on top, its transparency doesn't work on Linux yet, and it's invisible to Godot's own screenshots.
@@ -258,7 +258,7 @@ OZMIUM's cyber-theme main menu, settings persistence and keybind capture in the 
 
 ## Multiplayer and online services (zero-cost, 2026-10-22)
 
-Tony wants full multiplayer capability. **Built last (2026-10-23), after the map editor and replays, per `MULTIPLAYER_PLAN.md`.** **Decided 2026-10-22: no Steamworks and no paid hosting.** Players host matches from their own PCs and connect peer-to-peer, dedicated servers are optional, and accounts, matchmaking, the match browser and player data run on Cloudflare's free tier.
+Ozmium wants full multiplayer capability. **Built last (2026-10-23), after the map editor and replays, per `MULTIPLAYER_PLAN.md`.** **Decided 2026-10-22: no Steamworks and no paid hosting.** Players host matches from their own PCs and connect peer-to-peer, dedicated servers are optional, and accounts, matchmaking, the match browser and player data run on Cloudflare's free tier.
 
 **Why not Steamworks:**
 - **App ID:** a Steam release needs an App ID, and Valve's review needs the asset rights from "Licensing" settled first.
@@ -280,16 +280,16 @@ Tony wants full multiplayer capability. **Built last (2026-10-23), after the map
 
 **Hosting matches (costs nothing):**
 
-Tony's rule: players never have to run a dedicated server. Any player can host a match from their own PC, others connect to them with no port forwarding, and everyone can see and join everyone else's matches.
+Ozmium's rule: players never have to run a dedicated server. Any player can host a match from their own PC, others connect to them with no port forwarding, and everyone can see and join everyone else's matches.
 
 | Need | How |
 |---|---|
 | Player-hosted matches | The host's game runs a listen server (q3core's server, same code as a dedicated one) and plays in it |
 | Connecting with no setup | Peer-to-peer WebRTC (Godot's official webrtc-native extension, MIT). q3core's netchan packets ride an unreliable, unordered data channel instead of a raw UDP socket: a new virtual address type hands packets to Godot instead of `NET_SendPacket`/`Sys_GetPacket`. Connection setup (signaling) goes through the backend's WebSocket |
-| Hidden IPs (Tony, 2026-10-23) | Every internet connection goes through Cloudflare's TURN relay (Realtime: 1,000 GB/month free, shared with the SFU, then $0.05/GB), so no player ever sees another's IP, host included. Both sides gather relay candidates only (`iceTransportPolicy: relay`), and the hub drops any non-relay candidate from the signaling it forwards. The relay is UDP, so the data channel keeps Quake 3's unreliable packets. Cost: a few to about 20 ms over a direct path. LAN play stays direct |
+| Hidden IPs (Ozmium, 2026-10-23) | Every internet connection goes through Cloudflare's TURN relay (Realtime: 1,000 GB/month free, shared with the SFU, then $0.05/GB), so no player ever sees another's IP, host included. Both sides gather relay candidates only (`iceTransportPolicy: relay`), and the hub drops any non-relay candidate from the signaling it forwards. The relay is UDP, so the data channel keeps Quake 3's unreliable packets. Cost: a few to about 20 ms over a direct path. LAN play stays direct |
 | Seeing and joining matches | One match browser lists player-hosted matches and dedicated servers together: mode, map, players, region, ping, friends in it, password lock. A host registers its match in a Durable Object directory and updates it over its open WebSocket. Join in progress or spectate; private matches are invite-only |
-| Dedicated servers | Any player can run an always-on dedicated server (Tony, 2026-10-23): clans, leagues, community servers, ranked. The dedicated build ships with the game, accepts WebRTC and plain UDP, and lists in the same browser. See "Player-run dedicated servers" below |
-| Vote kick, no anti-cheat (Tony, 2026-10-22) | Quake 3's own `callvote kick` in the match (game module). The host tells the hub, and the hub keeps the kicked player out of that lobby for 30 minutes: it's hidden from them in the browser and their join is refused. The host's server also refuses their id, so a direct `connect` fails too. The ban is tied to the player's identity key, not their IP. Party kicks don't ban: the leader can re-invite straight away (Tony). To be built with the match browser |
+| Dedicated servers | Any player can run an always-on dedicated server (Ozmium, 2026-10-23): clans, leagues, community servers, ranked. The dedicated build ships with the game, accepts WebRTC and plain UDP, and lists in the same browser. See "Player-run dedicated servers" below |
+| Vote kick, no anti-cheat (Ozmium, 2026-10-22) | Quake 3's own `callvote kick` in the match (game module). The host tells the hub, and the hub keeps the kicked player out of that lobby for 30 minutes: it's hidden from them in the browser and their join is refused. The host's server also refuses their id, so a direct `connect` fails too. The ban is tied to the player's identity key, not their IP. Party kicks don't ban: the leader can re-invite straight away (Ozmium). To be built with the match browser |
 | LAN | Quake 3's built-in LAN broadcast search over plain UDP, no internet needed |
 | Joining friends | Join from the friends list or party, `connect` links, Discord join buttons |
 | Classic Quake 3 browser | Dedicated servers can also register with the public dpmaster masters under our own game name (ask the operator first) |
@@ -299,7 +299,7 @@ Tony's rule: players never have to run a dedicated server. Any player can host a
 - **Relay budget:** a relayed player uses roughly 70 MB an hour (to be measured once netcode runs; the host's leg may count too). With every player relayed, the free 1,000 GB covers about 14,000 player-hours a month, about 20 players online around the clock. Past that it's about $3.50 per 1,000 player-hours. The fallback if that ever matters: relay by default, with an opt-in "direct connection" setting.
 - **Dedicated servers** are relayed like everything else, so a server on someone's home PC doesn't show its IP. An operator can mark a server public (a VPS, a datacenter box); players then connect to it directly and the relay isn't used.
 
-**Player-run dedicated servers (Tony, 2026-10-23):** anyone can keep a server running around the clock, on the PC they play on, a spare PC, or a free or cheap VPS.
+**Player-run dedicated servers (Ozmium, 2026-10-23):** anyone can keep a server running around the clock, on the PC they play on, a spare PC, or a free or cheap VPS.
 - **Starting one:** "Host dedicated server" in the menu runs the same executable headless in the background (no window, no rendering) with the server config built in match setup. It keeps running after the game closes, and can start with Windows. On Linux and VPSes, the same build runs from the command line or as a systemd service.
 - **One build, two platforms:** Windows and Linux x86-64, plus Linux ARM64 so Oracle's free tier works (a guide in DEVELOPMENT.md or the wiki).
 - **Ownership:** the server needs the operator's own retail pak0, checked the same way as the game's setup gate.
@@ -308,7 +308,7 @@ Tony's rule: players never have to run a dedicated server. Any player can host a
 - **Empty servers:** an idle server sleeps its game loop until someone joins, so it costs almost no CPU. Bots can fill empty slots if the operator wants.
 - **Matchmaking:** an operator can opt a server into matchmaking, and the queue sends matches to an empty one in the right region before falling back to a player host.
 
-**Regions (Tony, 2026-10-23):** players match in their closest region first and can pick another.
+**Regions (Ozmium, 2026-10-23):** players match in their closest region first and can pick another.
 - **Regions:** North America East, North America West, South America, Europe, Asia, Oceania, and Middle East/Africa.
 - **Detection:** the Worker reads the connection's `request.cf` location (continent, country, coordinates) at handshake, so the home region costs nothing and needs no ping probing.
 - **Setting:** Region is "Auto (closest)" or one named region, in Settings and on the Play page. A host's match is tagged with the host's region.
@@ -320,9 +320,9 @@ Tony's rule: players never have to run a dedicated server. Any player can host a
 |---|---|
 | Identity | No sign-up. A key pair made on first launch (Godot `Crypto`) is the player's identity; the Worker issues a session after a signed challenge. "Link Discord" (free OAuth) or a backup code moves a profile to another PC |
 | Player data | D1 holds profiles: rating, career stats, XP, unlocks, card, keybinds, settings, crosshair. Everything is also saved in `user://`, so the game works offline and the backend only syncs |
-| Friends, parties, presence | **Built 2026-10-22** (`online/`, `scripts/online/`, the menu's Friends panel). Everything lives in one Durable Object's own SQLite (not D1): friend codes, requests, presence (menu / match / map editor), parties of up to 8 with leader, invites, kick, promote and chat, over hibernating WebSockets. Live at `wss://arena-online.fragnet.workers.dev` (Tony's personal Cloudflare account) |
+| Friends, parties, presence | **Built 2026-10-22** (`online/`, `scripts/online/`, the menu's Friends panel). Everything lives in one Durable Object's own SQLite (not D1): friend codes, requests, presence (menu / match / map editor), parties of up to 8 with leader, invites, kick, promote and chat, over hibernating WebSockets. Live at `wss://arena-online.fragnet.workers.dev` (Ozmium's personal Cloudflare account) |
 | Matchmaking | A Durable Object queue per mode and region, by rating (window rules in "Ranked"; region rules in "Regions" above). Players stay connected with hibernating WebSockets instead of polling. The match goes to an empty matchmaking-enabled dedicated server in the region (those servers check in every 5 minutes); otherwise the matched player with the best connection to the others hosts |
-| Ranked results | Peer-to-peer for now (Tony, 2026-10-23: there are no dedicated servers yet). The matchmaker picks a player host, and the result counts only when the players agree on it (see "Trust" under "Player cards, progression and ranked"). Once verified dedicated servers exist, which sign results with a key we issue to trusted operators, ranked moves to them |
+| Ranked results | Peer-to-peer for now (Ozmium, 2026-10-23: there are no dedicated servers yet). The matchmaker picks a player host, and the result counts only when the players agree on it (see "Trust" under "Player cards, progression and ranked"). Once verified dedicated servers exist, which sign results with a key we issue to trusted operators, ranked moves to them |
 | Workshop | Maps, models, skins and mods stored in Cloudflare R2 (10 GB free, no download fees), uploads through the Worker, with reports and takedowns |
 
 - **Free-tier budget:** 100,000 Worker requests and 100,000 Durable Object requests a day (WebSocket messages count 20:1), D1's 5 million row reads and 100,000 row writes a day, free STUN, and 1,000 GB of TURN relay a month. That covers a few thousand daily players. Past that, the $5/month Workers plan, with no redesign.
@@ -332,7 +332,7 @@ Prior art: the GAME project's Steam lobbies, the steam-join snapshot fix and the
 
 ## Player cards, progression and ranked (2026-10-22)
 
-Tony wants:
+Ozmium wants:
 - Player cards that players customize, done the way trac3r does them, with a lot of choice and most of it themed on Quake III Arena.
 - An XP system whose levels unlock card parts.
 - Some parts that only achievements unlock.
@@ -341,7 +341,7 @@ Tony wants:
 Core rule: **progression is cosmetic only.** Nothing unlocked changes movement, weapons, damage, or what a player can see in a match. Every player has the whole game from the first launch, so the game feel stays sacred. Anything Quake 3 gave everyone for free stays free: every model and skin, colored names, and the original rail colors.
 
 ### What we take from trac3r (`C:\gAME\TRAC3R\web`)
-trac3r is Tony's own game, so its code and design are ours to reuse.
+trac3r is Ozmium's own game, so its code and design are ours to reuse.
 - **`src/game/cosmetics.ts`:** one pure-data catalog shared by the game and the server.
   - Each item is `{ id, name, unlock, value?, desc?, fx? }`, and `unlock` is `{ level: N }` or `{ achievement: id }`.
   - `isUnlocked()` and `unlockText()` ("LEVEL 40", "ACHIEVEMENT: UNTOUCHABLE") drive both the locker and validation.
@@ -360,8 +360,8 @@ trac3r is Tony's own game, so its code and design are ours to reuse.
 - **Profile tabs:** CARD (editor), ACHIEVEMENTS, LOCKER.
 - **Share card image:** a 1080×1350 PNG drawn from the same banner code (`ui/cardImage.ts`).
 - **Where cards show:** any leaderboard row opens that player's card, and the duel lobby shows the opponent's card.
-- **Ranked (design doc §8.3):** Tony's refined Elo, below.
-- **Ranked unlocks at level 30** (Tony, 2026-10-22): `Q3Profile.RANKED_LEVEL`. The menu shows it locked with the player's progress, and the hub's ranked queue must refuse anyone under it too.
+- **Ranked (design doc §8.3):** Ozmium's refined Elo, below.
+- **Ranked unlocks at level 30** (Ozmium, 2026-10-22): `Q3Profile.RANKED_LEVEL`. The menu shows it locked with the player's progress, and the hub's ranked queue must refuse anyone under it too.
 
 ### The card, Quake 3 style
 Styled like Quake 3's own UI: a dark gothic-metal plate, the name in Quake 3's banner font, a red accent glow and medal art.
@@ -430,7 +430,7 @@ Styled like Quake 3's own UI: a dark gothic-metal plate, the name in Quake 3's b
 - **Level ranks:**
   - 1 Fresh Meat, 5 Initiate, 10 Fragger, 15 Contender, 20 Gladiator, 30 Arena Veteran, 40 Warlord, 50 Champion.
   - 60 Immortal, 70 Vadrigar's Chosen, 80 Deathbringer, 90 Arena Lord, 100 Xaero's Equal.
-  - Placeholders for Tony to rename. The Vadrigar are the Arena's masters in Quake 3's story.
+  - Placeholders for Ozmium to rename. The Vadrigar are the Arena's masters in Quake 3's story.
 - **Medal titles:** Excellent!, Impressive!, Humiliator (Gauntlet), Flag Runner, Defender, Team Player.
 - **Weapon titles:** Rail God, Rocket Scientist, Plasma Junkie, Shaft Master, Buckshot, Grenadier, Pea Shooter, BFG Bandit.
 - **Movement titles:** Strafe Jumper, Speed Demon, Rocket Jumper, Plasma Climber.
@@ -497,13 +497,13 @@ Each part has exactly one rule in `cards.json` (`Q3Cards.is_unlocked`):
 - **Notification:** the announcer-style medal pop for a new achievement after the match, and a small in-match toast (can be turned off).
 
 ### Ranked (Elo)
-Taken from trac3r's tuned ladder (Tony's "LP should work like the chess rating system"):
+Taken from trac3r's tuned ladder (Ozmium's "LP should work like the chess rating system"):
 - **Rating:**
   - Plain Elo: everyone starts at 1000, and a result moves both players by `K × (score − expected)`, where `expected = 1 / (1 + 10^((opp − me) / 400))`.
   - It's zero-sum, so the ladder can't inflate.
   - K = 40 for a player's first 30 ranked games, 24 after, and 16 in the top tier. The floor is 100.
 - **Queues:** Duel (the headline), then TDM, CTF and Clan Arena when the player count allows. Each queue has its own rating. In team modes the opponent rating is the other team's average, and everyone on a team moves by the same amount.
-- **Tiers (Tony, 2026-10-23; they replaced Quake 3's skill names):**
+- **Tiers (Ozmium, 2026-10-23; they replaced Quake 3's skill names):**
   - Bronze (below 1000), Silver (1000), Gold (1300), Platinum (1600), Diamond (1900), Godlike (2200+).
   - Divisions III → II → I, every 100 points; Godlike is open-ended.
   - Each tier has its own icon (`webui/components/RankIcon.tsx`): a shield gaining chevrons, blades, wings and a horned crown.
@@ -529,7 +529,7 @@ An open-source client can change anything it stores or reports. OZMIUM's HMAC ke
 | What | Who decides it | Cheating risk |
 |---|---|---|
 | XP, levels, unlocks, achievements | The match's server. Offline or on a listen server, that's the player's own machine. Stored in `user://`, synced to the backend | Someone can unlock cosmetics they didn't earn. The harm stops at an undeserved-looking card, and the ID strip says LOCAL rather than OFFICIAL |
-| Ranked rating | **For now (Tony, 2026-10-23): peer-to-peer, by agreement.** Each player's game signs the final scoreboard it received with its identity key and sends it to the ranked backend. The backend applies the result only when the reports match: every player in a duel, a majority of non-host players in larger matches. Mismatches or missing reports void the match and are logged per host. **Later:** verified dedicated servers that sign results with a key that isn't in the repo. The ranked backend stores ratings, matches, seasons and the ladder either way | A modified host can still play unfairly (the others see it and can report it), but it can't change the result on its own. It would need the other players' games to sign a false scoreboard too. Hosts whose matches keep getting voided or reported lose ranked hosting |
+| Ranked rating | **For now (Ozmium, 2026-10-23): peer-to-peer, by agreement.** Each player's game signs the final scoreboard it received with its identity key and sends it to the ranked backend. The backend applies the result only when the reports match: every player in a duel, a majority of non-host players in larger matches. Mismatches or missing reports void the match and are logged per host. **Later:** verified dedicated servers that sign results with a key that isn't in the repo. The ranked backend stores ratings, matches, seasons and the ladder either way | A modified host can still play unfairly (the others see it and can report it), but it can't change the result on its own. It would need the other players' games to sign a false scoreboard too. Hosts whose matches keep getting voided or reported lose ranked hosting |
 | Cards others see | Every viewer runs `enforceUnlocks()` against the owner's stats. The backend does it for leaderboard cards | A card can only show parts its stats justify |
 
 - **Ranked backend:** the same shape as trac3r's (Worker + D1, sessions, cards, ladders), with players identified by their device key (or linked Discord) instead of a Google sign-in.
@@ -559,7 +559,7 @@ Order:
 
 ## Built-in map editor (same as OZMIUM's, 2026-10-22)
 
-Tony wants a fully built-in map editor that works exactly like the OZMIUM one: in the game itself, not a separate tool, usable by every player. OZMIUM's editor (GAME project, Unity) is the spec; the Godot version rebuilds the same features.
+Ozmium wants a fully built-in map editor that works exactly like the OZMIUM one: in the game itself, not a separate tool, usable by every player. OZMIUM's editor (GAME project, Unity) is the spec; the Godot version rebuilds the same features.
 
 | Area | Feature set (as in OZMIUM) |
 |---|---|
@@ -582,7 +582,7 @@ Godot notes: runtime brush meshing and its own collision/trace world (not Godot'
 
 ## Original Quake 3 maps in the remaster (2026-10-22)
 
-Tony wants compatibility with Quake 3's original maps, imported into the remaster.
+Ozmium wants compatibility with Quake 3's original maps, imported into the remaster.
 
 - **BSP import (compiled maps, the 35 in the paks plus community pk3s):** OZMIUM's importer is the proven reference (Aerowalk, Blood Run and Pillamyd were ported with audits).
   - Solid brushes come in as editable brushes, and patches from lump 13.
@@ -598,14 +598,14 @@ Tony wants compatibility with Quake 3's original maps, imported into the remaste
 
 ## Every texture fully PBR (2026-10-22)
 
-Tony wants all of Quake III Arena's textures to be fully PBR. That's 1,919 images in the paks:
+Ozmium wants all of Quake III Arena's textures to be fully PBR. That's 1,919 images in the paks:
 - 1,098 world textures (base_*, gothic_*, ctf, liquids, sfx, skies ...)
 - 552 model textures
 - effects, sprites, icons, menus and level shots
 
 | Group | Treatment |
 |---|---|
-| World textures (tiling) | make_pbr tiling mode: wrap-aware upscale (no island padding), seamless edges, world-texture classes (stone, metal, wood, gothic carving, tech panels, organic), height -> normal, matte roughness and metal per class, painted lighting moved to AO; stochastic anti-repetition on large faces (Tony's no-visible-repeat rule) |
+| World textures (tiling) | make_pbr tiling mode: wrap-aware upscale (no island padding), seamless edges, world-texture classes (stone, metal, wood, gothic carving, tech panels, organic), height -> normal, matte roughness and metal per class, painted lighting moved to AO; stochastic anti-repetition on large faces (Ozmium's no-visible-repeat rule) |
 | Shader effects | Additive stages -> emissive; alphaFunc -> cut-outs; surface lights (q3map_surfacelight) -> emissive intensity + real lights; scrolling, rotating and pulsing stages -> Godot shader parameters |
 | Liquids | Water, slime and lava as animated PBR shader materials with flow, refraction and damage tags |
 | Skies | Six-sided skies upscaled into Godot sky materials |

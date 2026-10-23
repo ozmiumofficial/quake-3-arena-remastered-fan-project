@@ -11,7 +11,7 @@ extends RefCounted
 ## the career hasn't earned, and draws everything from menu_payload().
 
 const PATH := "user://profile.json"
-## Ranked opens at this level (Tony, 2026-10-22). The online hub must check it too once ranked
+## Ranked opens at this level (Ozmium, 2026-10-22). The online hub must check it too once ranked
 ## queues exist; the menu only shows it.
 const RANKED_LEVEL := 30
 const XP := {"finished": 100, "frag": 10, "win": 150, "medal": 25, "perfect": 100}

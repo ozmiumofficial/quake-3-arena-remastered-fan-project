@@ -65,7 +65,7 @@ MEDALS = [  # stat key under medal., display name, icon (menu/medals)
 ]
 MODES = ["ffa", "duel", "tdm", "ctf", "ca", "ft", "instagib"]
 SKILLS = ["I Can Win", "Bring It On", "Hurt Me Plenty", "Hardcore", "Nightmare!"]
-# Ranked tiers (PLAN.md, Tony 2026-10-23): Bronze to Godlike. Floors in rating (MMR) points.
+# Ranked tiers (PLAN.md, Ozmium 2026-10-23): Bronze to Godlike. Floors in rating (MMR) points.
 RANKED_TIERS = [("bronze", "Bronze", 0), ("silver", "Silver", 1000), ("gold", "Gold", 1300),
                 ("platinum", "Platinum", 1600), ("diamond", "Diamond", 1900), ("godlike", "Godlike", 2200)]
 RANKED_DIVISION = 100   # III -> II -> I every 100 points inside a tier; Godlike is open-ended

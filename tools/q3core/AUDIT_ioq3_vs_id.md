@@ -16,7 +16,7 @@ Context that matters for several items: q3core does not run a cgame. Anything io
 | Recommendation | Count |
 |---|---|
 | REVERT to id's behavior | 13 |
-| ASK Tony | 6 |
+| ASK Ozmium | 6 |
 | KEEP | 92 (table rows; several rows group related fixes) |
 
 Most of the diff is safe: buffer and format-string fixes, crash guards, spectator and vote fixes, and log/print changes. The movement code (`bg_pmove.c`, `bg_slidemove.c`) is effectively unchanged apart from one water-jump test. Weapon damage, spread, fire rates, item amounts and respawn times are unchanged.
@@ -41,7 +41,7 @@ Most of the diff is safe: buffer and format-string fixes, crash guards, spectato
 
 ### ASK list
 
-Decided by Tony on 2026-10-22: A2 and A5 use id's 1.32 code (in the patch); A1, A3, A4 and A6 keep ioquake3's behavior.
+Decided by Ozmium on 2026-10-22: A2 and A5 use id's 1.32 code (in the patch); A1, A3, A4 and A6 keep ioquake3's behavior.
 
 
 | # | File | Function | Question |

@@ -1,4 +1,4 @@
-# Map editor scene: plan (approved by Tony, 2026-10-23, with every recommended choice below)
+# Map editor scene: plan (approved by Ozmium, 2026-10-23, with every recommended choice below)
 
 The built-in editor from PLAN.md "Built-in map editor", rebuilt from OZMIUM's (`C:\gAME\GAME`, Unity). It replaces the stub in `scenes/map_editor/map_editor.tscn`. Starting point on the OZMIUM side: `Docs/MapEditor-Handoff-2026-09-04.md`.
 
@@ -78,9 +78,9 @@ Order: E0 -> E1 -> E2/E3/E4 (any order) -> E5 -> E6 -> E7 -> E8. The first usabl
   - The world shaders ignore vertex color, so per-face tint needs tint-aware shader variants (E3).
   - Patch facing follows du x dv for now. E6 checks it against the vertex normals of BSP patches.
 
-## Decisions for Tony (decided 2026-10-23: every recommended choice)
+## Decisions for Ozmium (decided 2026-10-23: every recommended choice)
 
-1. **Lighting for player-made maps.** Godot can only bake LightmapGI in editor builds; an exported game can't (to confirm in E0). Tony's rule was "real-time lights in the editor, bake on save", so the bake needs a route:
+1. **Lighting for player-made maps.** Godot can only bake LightmapGI in editor builds; an exported game can't (to confirm in E0). Ozmium's rule was "real-time lights in the editor, bake on save", so the bake needs a route:
    - **Recommended: q3map's own light stage** (`-light`, the same GPL source): Quake 3's lightmaps, the light model we already calibrated the Godot bakes against. The world shaders gain a BSP-lightmap input. About +1.5 h.
    - A custom Godot export template with the lightmapper compiled in: identical look to the stock maps, but we'd build Godot from source instead of the Steam build. About +3 h plus long builds.
    - Real-time only (SDFGI and shadows), no bake: simplest, but leaks in tight rooms and costs frame rate.

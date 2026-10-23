@@ -8,7 +8,7 @@ Built 2026-10-22. Quake III Arena's Keel player model, taken from a legally owne
 - a remastered version: one smoothed skinned mesh, a 21-bone skeleton recovered from the animation frames, 25 named clips, and 2K PBR texture maps,
 - a web viewer comparing original and remaster side by side.
 
-Online viewer (private to Tony's claude.ai account): https://claude.ai/artifact/8idHYcHtmEor4qy1ZbvWbT
+Online viewer (private to Ozmium's claude.ai account): https://claude.ai/artifact/8idHYcHtmEor4qy1ZbvWbT
 
 The roadmap for taking this further is in [PLAN.md](PLAN.md).
 
@@ -101,4 +101,4 @@ Leg frames in lower.md3 skip the torso-only range: file frame = cfg frame - 63.
 
 ## License
 
-Keel's mesh, textures and animation are id Software's copyrighted art. Fine for private study and reference; not for OZMIUM or any public release. The scripts are Tony's to use for anything. See PLAN.md for how fan remasters handle this ("bring your own pak0").
+Keel's mesh, textures and animation are id Software's copyrighted art. Fine for private study and reference; not for OZMIUM or any public release. The scripts are Ozmium's to use for anything. See PLAN.md for how fan remasters handle this ("bring your own pak0").
